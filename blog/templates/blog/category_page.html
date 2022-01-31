@@ -1,0 +1,22 @@
+{% extends 'blog/base/base.html' %} {% load static %}
+
+<title>{% block title %}{{category | title}}{% endblock title %}</title>
+{% block content %}
+<div class="container">
+  <main class="section-center">
+    <h2>Category: {{category}}</h2>
+    {% for post in posts %}
+    <div class="single-post-search">
+      <h2>{{post.title}}</h2>
+      <img class="img" src="{{ post.image.url }}" />
+      <p>{{post.description}}</p>
+      <a class="btn result-btn" href="{%url 'single-post'  post.slug%}"
+        >Read More</a
+      >
+    </div>
+    <div class="divition"></div>
+    {% endfor %}
+  </main>
+  {% include 'blog/includes/sidebar.html' %}
+</div>
+{% endblock content %}

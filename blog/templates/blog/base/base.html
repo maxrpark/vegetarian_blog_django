@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <!--end of google fonts -->
+
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
+    {% endblock styles %}
+    <title>{% block title %}Vegetarian Blog{% endblock title %}</title>
+  </head>
+  <body>
+    <nav>
+      <div class="navbar">
+        <a href="/"><h3>Vegetarian Blog</h3></a>
+        <div class="nav-links">
+          <form action="{%url 'search'%}">
+            <input
+              placeholder="Search..."
+              class="search-input"
+              name="query"
+              type="text"
+            />
+          </form>
+        </div>
+      </div>
+    </nav>
+    {%block content%} {%endblock%}
+    <footer>
+      <p>
+        Made with Django, by
+        <a target="_blank" href="https://twitter.com/MaxCodeJourney"
+          >Maxi Ruti</a
+        >
+      </p>
+      <p>
+        Visit my other projects
+        <a target="_blank" href="https://my-portfolio-blog-website.netlify.app/"
+          >My Portfolio Website</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>

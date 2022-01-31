@@ -1,0 +1,33 @@
+{% load static %} {% block styles %}<link
+  rel="stylesheet"
+  href="{% static 'base.css' %}"
+/>
+{% endblock styles %}
+
+<aside class="sidebar">
+  <!--categorias -->
+  <div class="sidebar-section">
+    <h2>Categories</h2>
+    {% for post in categories %}
+    <ul class="catory-list">
+      <li>
+        <a href="{%url 'category'  post.slug%}">{{post.name}}</a>
+      </li>
+    </ul>
+    {% endfor %}
+  </div>
+  <div class="divition"></div>
+  <!--posts -->
+  <div class="sidebar-section latest-post-sidebar">
+    <h2>Latests Posts</h2>
+    {% for post in latests_post %}
+    <div class="single-post-sidebar">
+      <a href="{%url 'single-post'  post.slug%}"
+        >{{post.name}}
+        <p>{{post.title}}</p>
+        <img class="img post-img" src="{{ post.image.url }}" />
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</aside>

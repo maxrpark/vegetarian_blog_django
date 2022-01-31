@@ -1,0 +1,17 @@
+{% load static %} {% block styles %}<link
+  rel="stylesheet"
+  href="{% static 'base.css' %}"
+/>
+{% endblock styles %}
+
+<div class="blog-section">
+  <a href="{%url 'single-post'  post.slug%}">
+    <h3>{{post.title}}</h3>
+    <img class="img card-img" src="{{ post.image.url }}" />
+    <div class="tags">
+      {% for tag in post.tags.all %}
+      <p class="tag">{{tag.tag}}</p>
+      {% endfor %}
+    </div>
+  </a>
+</div>

@@ -1,0 +1,30 @@
+{% extends 'blog/base/base.html' %} {% load static %} {% block styles %}
+<link rel="stylesheet" href="{% static 'base.css' %}" />
+
+<link rel="stylesheet" href="{% static 'blog/single-post.css' %}" />
+
+{% endblock styles %}
+
+<title>{% block title %}{{post.title | title}}{% endblock title %}</title>
+{% block content %}
+<div class="container">
+  <main class="section-center">
+    {% if posts %} {% for post in posts %}
+    <h2>Results for : {{query}}</h2>
+    <div class="single-post-search">
+      <h2>{{post.title}}</h2>
+      <img class="img" src="{{ post.image.url }}" />
+      <p>{{post.description}}</p>
+      <a class="btn result-btn" href="{%url 'single-post'  post.slug%}"
+        >Read More</a
+      >
+    </div>
+    <div class="divition"></div>
+    {% endfor %} {% else %}
+    <h2>Sorry no results for : {{query}}</h2>
+    <a class="btn" href="/">Go Back</a>
+    {% endif %}
+  </main>
+  {% include 'blog/includes/sidebar.html' %}
+</div>
+{% endblock content %}

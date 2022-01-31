@@ -1,0 +1,62 @@
+{% extends 'blog/base/base.html' %} {% load static %} {% block styles %}
+<link rel="stylesheet" href="{% static 'blog/home.css' %}" />
+{% endblock styles %}
+
+<title>{% block title %}Vegetarian{{posts.title}}{% endblock title %}</title>
+{% block content %}
+<div class="section-center">
+  <div class="header-section">
+    <!--new post -->
+    <div class="new-post">
+      <a class="new-post-card" href="{%url 'single-post'  new_post.slug%}">
+        <h2>{{new_post.title}}</h2>
+        <img class="img" src="{{ new_post.image.url }}" />
+        <p class="dsc">{{new_post.description}}</p>
+      </a>
+    </div>
+    <!--end of new post -->
+    <!--lastest_post -->
+    <div class="latest-section">
+      <div class="label">
+        <h3 class="subtitle">Latests post</h3>
+        <span class="line"></span>
+      </div>
+      <div class="latest-section-cards">
+        {% for post in Latests_post %}
+        <div class="Latests-post-card">
+          <a href="{%url 'single-post'  post.slug%}">
+            <h3>{{post.title}}</h3>
+            <p>{{new_post.description}}</p>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!--lastest_post -->
+  </div>
+  <!-- snack section -->
+  <section class="section">
+    <div class="label">
+      <h2 class="subtitle">Snacks</h2>
+      <span class="line"></span>
+    </div>
+    <div class="section-cards-container">
+      {% for post in snacks_posts %} {% include 'blog/includes/card.html'%}
+      {%endfor %}
+    </div>
+    <!--end of snack section -->
+  </section>
+  <!--restaurante section -->
+  <section class="section">
+    <div class="label">
+      <h2 class="subtitle">Snacks</h2>
+      <span class="line"></span>
+    </div>
+    <div class="section-cards-container">
+      {% for post in restaurant_posts %} {% include 'blog/includes/card.html' %}
+      {%endfor %}
+    </div>
+  </section>
+  <!--end of restaurante section -->
+</div>
+{% endblock content %}

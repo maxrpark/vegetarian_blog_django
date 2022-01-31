@@ -1,0 +1,13 @@
+{% extends 'blog/base/base.html' %} {% load static %} {% block styles %}
+<link rel="stylesheet" href="{% static '/base.css' %}" />
+{% endblock styles %}
+
+<title>{% block title %}Nothing here{% endblock title %}</title>
+{% block content %}
+<div class="container">
+  <main class="section-center">
+    <h2>Ups nothing here</h2>
+    <a class="btn" href="/">Go Back</a>
+  </main>
+</div>
+{% endblock content %}

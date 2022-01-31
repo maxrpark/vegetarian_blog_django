@@ -1,0 +1,70 @@
+{% extends 'blog/base/base.html' %} {% load static %} {% block styles %}
+<link rel="stylesheet" href="{% static 'base.css' %}" />
+
+<link rel="stylesheet" href="{% static 'blog/single-post.css' %}" />
+
+{% endblock styles %}
+
+<title>{% block title %}{{post.title | title}}{% endblock title %}</title>
+{% block content %}
+<div class="container">
+  <main class="section-center">
+    <!-- post content-->
+    <div class="post-section">
+      <header>
+        <div class="section-top">
+          <h2>{{post.title}}</h2>
+          <a href="{% url 'category' post.category.slug %}"
+            >Category: <span>{{ post.category }}</span>
+          </a>
+        </div>
+        <img class="img post-img" src="{{ post.image.url }}" />
+
+        <div class="tags">
+          {% for tag in tags%}
+          <a class="tag" href="{% url 'tags' tag.slug %}">{{ tag }}</a>
+          {% endfor %}
+        </div>
+      </header>
+      <div class="divition"></div>
+      <div class="content">{{post.body | safe}}</div>
+    </div>
+    <!-- comment section-->
+    <div class="comment-section">
+      {% if comments %}
+      <div class="divition"></div>
+      <h2>Comments</h2>
+      <div class="comments">
+        {% for comment in comments %}
+        <div class="single-comment">
+          <h3 class="user-title">{{comment.title}}</h3>
+          <p class="user-messege">{{comment.messege}}</p>
+          <h3 class="user-name">{{comment.name}}</h3>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="divition"></div>
+      <div class="form">
+        <h2>Leave a comment</h2>
+        <form action="{%url 'single-post' post.slug%}" method="POST">
+          {% csrf_token %} {{comments_form}}
+          <button class="btn">Submit</button>
+        </form>
+      </div>
+      <div class="divition"></div>
+      <div class="related-post">
+        <h2>Related Post</h2>
+        <div class="section-cards-container">
+          {% for post in related_posts %}
+          <!---->
+          {% include 'blog/includes/card.html' %}
+          <!---->
+          {%endfor %}
+        </div>
+      </div>
+    </div>
+  </main>
+  {% include 'blog/includes/sidebar.html' %}
+</div>
+{% endblock content %}
