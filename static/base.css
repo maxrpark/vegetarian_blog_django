@@ -42,7 +42,6 @@ ul {
 .container {
   min-height: 100vh;
   display: none;
-  border: 2px solid;
 }
 
 @media screen and (min-width: 960px) {
