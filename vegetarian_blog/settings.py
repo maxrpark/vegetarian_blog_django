@@ -1,6 +1,11 @@
 import django_heroku
 from pathlib import Path
 import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,7 +15,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y@@vk&(e-qoft-zhg(^@0-q)r#@miv0d87w^7#8^f@7m2^#5*r'
+SECRET_KEY = env('SECRET_KEY')
+# SECRET_KEY = 'django-insecure-y@@vk&(e-qoft-zhg(^@0-q)r#@miv0d87w^7#8^f@7m2^#5*r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -135,10 +141,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dcytr1px3',
-    'API_KEY': '573563716419155',
-    'API_SECRET': 'p-BzQsLOvkocYQL_5ry8ZDQUg68',
+    'CLOUD_NAME': env('CLOUD_NAME'),
+    'API_KEY': env('API_KEY'),
+    'API_SECRET': env('API_SECRET'),
+    # 'CLOUD_NAME': 'dcytr1px3',
+    # 'API_KEY': '573563716419155',
+    # 'API_SECRET': 'p-BzQsLOvkocYQL_5ry8ZDQUg68',
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 django_heroku.settings(locals())
+
+
+# CLOUD_NAME = dcytr1px3
+# API_KEY = 573563716419155
+# API_SECRET = p-BzQsLOvkocYQL_5ry8ZDQUg68
