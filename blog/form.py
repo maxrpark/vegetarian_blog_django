@@ -9,6 +9,3 @@ class commentForm(forms.ModelForm):
     class Meta:
         model = Comments
         exclude = ['article']
-        labels = {
-            "name": "Your name mate"
-        }
