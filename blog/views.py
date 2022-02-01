@@ -43,7 +43,7 @@ class CategoryListView(View):
         context = {
             "posts": posts,
             "category": category,
-            "latests_post": latests_post[0:4],
+            "latests_post": latests_post[0:3],
             "categories": all_categories,
         }
         return render(request, 'blog/category_page.html', context)

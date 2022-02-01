@@ -204,7 +204,7 @@ nav {
   }
   .card-img {
     height: 200px;
-    width: 300px;
+    width: 100%;
     object-fit: cover;
   }
 }
@@ -263,4 +263,8 @@ footer {
 }
 footer a {
   color: var(--primary-green-01);
+}
+
+body {
+  background-color: red;
 }
