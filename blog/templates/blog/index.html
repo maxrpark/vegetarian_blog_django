@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{% static 'blog/home.css' %}" />
 {% endblock styles %}
 
-<title>{% block title %}Vegetarian{{posts.title}}{% endblock title %}</title>
+<title>{% block title %}Vegetarian || Home{% endblock title %}</title>
 {% block content %}
 <div class="section-center">
   <div class="header-section">
@@ -26,7 +26,7 @@
         <div class="Latests-post-card">
           <a href="{%url 'single-post'  post.slug%}">
             <h3>{{post.title}}</h3>
-            <p>{{new_post.description}}</p>
+            <p>{{post.description}}</p>
           </a>
         </div>
         {% endfor %}

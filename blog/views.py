@@ -13,16 +13,16 @@ class HomeView(View):
     def get(self, request):
         all_post = Article.objects.all()
         restaurant_posts = all_post.filter(
-            category__slug='cafes-y-restaurantes')
-        snacks_posts = all_post.filter(category__slug='snack')
-        new_post = all_post[0]
-        Latests_post = all_post[1:4]
+            category__slug='cafes-y-restaurantes').order_by("-id",)
+        snacks_posts = all_post.filter(category__slug='snack').order_by("-id",)
+        new_post = all_post.last
+        Latests_post = all_post.order_by("-id",)
 
         context = {
             "new_post": new_post,
-            "Latests_post": Latests_post,
-            "snacks_posts": snacks_posts,
-            "restaurant_posts": restaurant_posts
+            "Latests_post": Latests_post[1:4],
+            "snacks_posts": snacks_posts[0:3],
+            "restaurant_posts": restaurant_posts[0:3]
         }
         return render(request, 'blog/index.html', context)
 
@@ -36,7 +36,7 @@ class CategoryListView(View):
 
         all_post = Article.objects.all()
 
-        latests_post = all_post[0:4]
+        latests_post = all_post.order_by("-id",)[0:4]
         context = {
             "posts": posts,
             "category": category,
@@ -53,7 +53,7 @@ class TagsListView(View):
         tags = Tags.objects.filter(slug=slug).last
 
         all_categories = Category.objects.all()
-        latests_post = all_post[0:4]
+        latests_post = all_post[0:4].order_by("-id",)[0:4]
         context = {
             "posts": posts,
             "tag": tags,
@@ -70,7 +70,7 @@ class singlePost(View):
         all_post = Article.objects.all()
         related_posts = all_post.filter(category__slug=post_category)
         all_categories = Category.objects.all()
-        latests_post = all_post[0:4]
+        latests_post = all_post[0:4].order_by("-id",)[0:4]
         context = {
             "post": post,
             "latests_post": latests_post,
@@ -108,7 +108,7 @@ class SearchListView(View):
         posts = posts = Article.objects.filter(status=Article.ACTIVE).filter(
             Q(title__icontains=query) | Q(description__icontains=query) | Q(body__icontains=query))
         all_categories = Category.objects.all()
-        latests_post = all_post[0:4]
+        latests_post = all_post[0:4].order_by("-id",)[0:4]
 
         context = {
             "query": query,
