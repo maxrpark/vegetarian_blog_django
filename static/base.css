@@ -3,9 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  background-color: red;
-}
+
 :root {
   --primary-green-01: #c3e8bd;
   --primary-green-02: #8eb897;

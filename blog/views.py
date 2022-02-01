@@ -36,11 +36,11 @@ class CategoryListView(View):
 
         all_post = Article.objects.all()
 
-        latests_post = all_post.order_by("-id",)[0:4]
+        latests_post = all_post.order_by("-id",)
         context = {
             "posts": posts,
             "category": category,
-            "latests_post": latests_post,
+            "latests_post": latests_post[0:4],
             "categories": all_categories,
         }
         return render(request, 'blog/category_page.html', context)
@@ -53,7 +53,7 @@ class TagsListView(View):
         tags = Tags.objects.filter(slug=slug).last
 
         all_categories = Category.objects.all()
-        latests_post = all_post[0:4].order_by("-id",)[0:4]
+        latests_post = all_post.order_by("-id",)[0:4]
         context = {
             "posts": posts,
             "tag": tags,
@@ -70,7 +70,7 @@ class singlePost(View):
         all_post = Article.objects.all()
         related_posts = all_post.filter(category__slug=post_category)
         all_categories = Category.objects.all()
-        latests_post = all_post[0:4].order_by("-id",)[0:4]
+        latests_post = all_post.order_by("-id",)[0:4]
         context = {
             "post": post,
             "latests_post": latests_post,
@@ -108,7 +108,7 @@ class SearchListView(View):
         posts = posts = Article.objects.filter(status=Article.ACTIVE).filter(
             Q(title__icontains=query) | Q(description__icontains=query) | Q(body__icontains=query))
         all_categories = Category.objects.all()
-        latests_post = all_post[0:4].order_by("-id",)[0:4]
+        latests_post = all_post.order_by("-id",)[0:4]
 
         context = {
             "query": query,
