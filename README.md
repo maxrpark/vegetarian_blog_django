@@ -1,9 +1,5 @@
-
-<div align="center">
-<h2>Vegetarian Blog</h1>
-  
 ![alt text](https://img.shields.io/badge/My%20first%20website-2.0.4-green)  ![alt text](https://img.shields.io/badge/Made%20by-Max-brightgreen) ![alt text](https://img.shields.io/badge/Made%20With-Django.js-darkgreen)
-</div>
+
 
 # Vegetarian Blog
 
